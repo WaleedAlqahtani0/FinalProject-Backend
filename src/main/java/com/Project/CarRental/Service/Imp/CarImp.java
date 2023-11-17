@@ -22,6 +22,15 @@ public class CarImp implements CarServices {
     }
 
     @Override
+    public Car getCarId(Integer id) {
+        Optional<Car> car = carRepository.findById(id);
+        if(car.isEmpty()){
+            throw new RuntimeException("Not found");
+        }
+        return car.get();
+    }
+
+    @Override
     public Car addCar(Car car) {
         return carRepository.save(car);
     }

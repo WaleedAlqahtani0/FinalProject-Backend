@@ -19,6 +19,8 @@ public interface CarServices {
    */
     public List<Car> getAllCars();
 
+    public Car getCarId (Integer id);
+
     public Car addCar(Car car);
 
     public void deleteCar(Integer id);

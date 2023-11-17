@@ -28,16 +28,39 @@ public class Car {
     //-----------  attribute
     private String color;
 
+    private String imageUrl;
+
+    private double price;
+
 
 
     //---------- constructors, getters, setters, equals, hashCode and toString;
     public Car() {
     }
 
-    public Car(String type, int model, String color) {
+    public Car(String type, int model, String color, String imageUrl, int price) {
         this.type = type;
         this.model = model;
         this.color = color;
+        this.imageUrl = imageUrl;
+        this.price = price;
+
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public int getId() {

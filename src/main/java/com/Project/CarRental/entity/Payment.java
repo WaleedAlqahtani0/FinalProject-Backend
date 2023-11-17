@@ -25,11 +25,23 @@ public class Payment {
     @JoinColumn(name = "userId")
     private User user;
 
+    @OneToOne
+    @JoinColumn(name = "bookCode")
+    private Book book;
+
     public Payment() {
     }
 
     public Payment(String cardType) {
         this.cardType = cardType;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public String getCodeNumber() {

@@ -49,6 +49,7 @@ public class UserController {
            - @Valid to validation
            - I used try-catch to check there is not give anu error or Exception when added
              */
+
     @PostMapping("/users/add")
     public ResponseEntity<String> addUsers(@RequestBody @Valid User user) {
         try {

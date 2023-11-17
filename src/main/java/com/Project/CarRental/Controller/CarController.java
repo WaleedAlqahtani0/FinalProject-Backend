@@ -29,6 +29,12 @@ public class CarController {
         return carImp.getAllCars();
     }
 
+    @GetMapping("/cars/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Car getCarId(@PathVariable int id){
+        return carImp.getCarId(id);
+    }
+
     // Post -- Add
 
     @PostMapping("/cars/add")

@@ -1,11 +1,14 @@
 package com.Project.CarRental.Service.Imp;
 
+
 import com.Project.CarRental.Repository.UserRepository;
 import com.Project.CarRental.Service.interfaces.UserServices;
 import com.Project.CarRental.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
     /*
@@ -21,9 +24,9 @@ public class UserImp implements UserServices {
     private UserRepository userRepository;
 
 
-    /*
-         ------ get all the users by findAll()
-         */
+        /*
+           ------ get all the users by findAll()
+            */
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -68,4 +71,5 @@ public class UserImp implements UserServices {
             return "Users Not Updated";
         }
     }
-}
+
+    }

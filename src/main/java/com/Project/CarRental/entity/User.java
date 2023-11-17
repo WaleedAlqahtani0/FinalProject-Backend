@@ -1,7 +1,13 @@
 package com.Project.CarRental.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,19 +26,26 @@ public class User {
     private int id;
 
     //----------- attribute
+    // ----------------------------------------
+    @NotEmpty(message = "Provide a name.")
     private String username;
 
     //----------- attribute
+    // ----------------------------------------
+    @Email (message = "Provide a valid email address.")
     private String email;
 
     //-----------  attribute
+    // -----------------------------------------
+    // should uppercase and letter and at least 6 characters
+    @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}",
+            message = "Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.")
     private String password;
 
-
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Book> book;
 
-    @OneToOne (mappedBy = "user")
+    @OneToOne (mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Payment payment;
 
     public User() {

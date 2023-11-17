@@ -21,6 +21,10 @@ public class Book {
     @JoinColumn(name = "carId")
     private Car car;
 
+    @OneToOne (mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Payment payment;
+
+
     //---------- constructors, getters, setters, equals, hashCode and toString;
     public Book() {
     }
