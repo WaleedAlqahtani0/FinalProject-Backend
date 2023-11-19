@@ -1,15 +1,16 @@
 package com.Project.CarRental.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /*
 
@@ -18,7 +19,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "tbl_User")
-public class User {
+public class User implements UserDetails {
 
     // --------- Primary key (id) generated automatically by the database
     @Id
@@ -42,6 +43,8 @@ public class User {
             message = "Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.")
     private String password;
 
+    private Role roles;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Book> book;
 
@@ -53,14 +56,23 @@ public class User {
 
     //---------- constructors, getters, setters, equals, hashCode and toString;
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password,Role roles) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.roles =roles;
     }
 
     public int getId() {
         return id;
+    }
+
+    public Role getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Role roles) {
+        this.roles = roles;
     }
 
     public String getUsername() {
@@ -109,5 +121,36 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(roles.name()));
+    }
+
+
 
 }

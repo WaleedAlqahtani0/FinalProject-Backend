@@ -1,6 +1,8 @@
 package com.Project.CarRental.Service.interfaces;
 
 import com.Project.CarRental.entity.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import java.util.List;
 
 /*
@@ -24,4 +26,6 @@ public interface UserServices {
     public void deleteUser(Integer id);
 
     public String UpdateUser(int id, User user);
+
+    public UserDetailsService userDetailsService();
 }

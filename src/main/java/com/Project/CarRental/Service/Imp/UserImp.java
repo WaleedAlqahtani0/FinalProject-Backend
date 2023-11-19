@@ -4,7 +4,11 @@ package com.Project.CarRental.Service.Imp;
 import com.Project.CarRental.Repository.UserRepository;
 import com.Project.CarRental.Service.interfaces.UserServices;
 import com.Project.CarRental.entity.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,13 +19,14 @@ import java.util.List;
        UserImp implements UserService
     */
 @Service
+@RequiredArgsConstructor
 public class UserImp implements UserServices {
 
     /*
      -------- Autowired UserRepository for database operations.
     */
     @Autowired
-    private UserRepository userRepository;
+     UserRepository userRepository;
 
 
         /*
@@ -71,5 +76,20 @@ public class UserImp implements UserServices {
             return "Users Not Updated";
         }
     }
+
+
+        @Override
+        public UserDetailsService userDetailsService() {
+            return new UserDetailsService() {
+                @Override
+                public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                    UserDetails userDetails = userRepository.findByusername(username);
+                    if(userDetails == null){
+                        throw new UsernameNotFoundException("User not found");
+                    }
+                    return userDetails;
+                }
+            };
+        }
 
     }
