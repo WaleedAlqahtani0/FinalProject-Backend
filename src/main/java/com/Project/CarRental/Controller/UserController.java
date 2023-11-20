@@ -5,6 +5,7 @@ import com.Project.CarRental.Repository.UserRepository;
 import com.Project.CarRental.Service.Imp.UserImp;
 import com.Project.CarRental.entity.User;
 import jakarta.validation.Valid;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.Optional;
  * REST API for User
  */
 @RestController
+@NoArgsConstructor
 public class UserController {
 
     /*
@@ -43,6 +45,11 @@ public class UserController {
         return userImp.getAllUsers();
     }
 
+
+    @GetMapping(value = "/users/{id}")
+    public User findUserById(@PathVariable int id){
+        return userImp.findUserById(id);
+    }
     /*------------------
            - add a new user
            - @RequestBody user the user to be saved

@@ -1,6 +1,7 @@
 package com.Project.CarRental.entity;
 
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.Objects;
 
@@ -11,6 +12,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "tbl_Car")
+@CrossOrigin
 public class Car {
 
 

@@ -33,7 +33,11 @@ public class User implements UserDetails {
 
     //----------- attribute
     // ----------------------------------------
-    @Email (message = "Provide a valid email address.")
+    @Pattern(regexp = "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+            + "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+            + "(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9]"
+            + "(?:[A-Za-z0-9-]*[A-Za-z0-9])?",
+            message = "Provide a valid email address.")
     private String email;
 
     //-----------  attribute

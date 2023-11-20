@@ -23,13 +23,13 @@ public class CarController {
 
     // Get
 
-    @GetMapping("/cars")
+    @GetMapping("/carRental/cars")
     @ResponseStatus(HttpStatus.OK)
     public List<Car> getAllCars() {
         return carImp.getAllCars();
     }
 
-    @GetMapping("/cars/{id}")
+    @GetMapping("/carRental/cars/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Car getCarId(@PathVariable int id){
         return carImp.getCarId(id);

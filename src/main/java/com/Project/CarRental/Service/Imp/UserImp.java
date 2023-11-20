@@ -37,9 +37,14 @@ public class UserImp implements UserServices {
         return userRepository.findAll();
     }
 
-    /*
-    --------- add a new user to the database
-     */
+        @Override
+        public User findUserById(int id) {
+            return userRepository.findById(id).get();
+        }
+
+        /*
+        --------- add a new user to the database
+         */
     @Override
     public User addUser(User user) {
         return userRepository.save(user);

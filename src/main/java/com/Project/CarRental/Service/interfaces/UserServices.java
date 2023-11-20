@@ -21,6 +21,8 @@ public interface UserServices {
 
     public List<User> getAllUsers();
 
+    User findUserById(int id);
+
     public User addUser(User user);
 
     public void deleteUser(Integer id);

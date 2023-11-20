@@ -36,8 +36,10 @@ public class SecurityConfig  {
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(
                         request-> request.requestMatchers("/carRental/auth/**")
                                 .permitAll()
-                                .requestMatchers("/carRental-admin/**").hasAnyAuthority(Role.ADMIN.name())
-                                .requestMatchers("/carRental/**").hasAnyAuthority(Role.USER.name(),Role.ADMIN.name())
+                                .requestMatchers("/carRental-admin/**").permitAll()
+//                                .requestMatchers("/carRental-admin/**").hasAnyAuthority(Role.ADMIN.name())
+//                                .requestMatchers("/carRental/**").hasAnyAuthority(Role.USER.name(),Role.ADMIN.name())
+                                .requestMatchers("/carRental/**").permitAll()
                                 .anyRequest().authenticated())
                 .sessionManagement(manager-> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
