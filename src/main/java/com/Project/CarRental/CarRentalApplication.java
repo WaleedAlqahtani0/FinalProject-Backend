@@ -25,15 +25,7 @@ public class CarRentalApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(CarRentalApplication.class, args);
 	}
-	@Bean
-	public WebMvcConfigurer corsConfigurer(){
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry){
-				registry.addMapping("/**").allowedMethods("*").allowedOrigins("*");
-			}
-		};
-	}
+
 	@Override
 	public void run(String... args) throws Exception {
 		User adminAccount = usersRepository.findByroles(Role.ADMIN);
@@ -48,6 +40,17 @@ public class CarRentalApplication implements CommandLineRunner {
 		}
 
 	}
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer(){
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry){
+				registry.addMapping("/**").allowedMethods("*").allowedOrigins("*").allowedHeaders("Content-Type","Authorization");
+			}
+		};
+	}
+
 
 
 }

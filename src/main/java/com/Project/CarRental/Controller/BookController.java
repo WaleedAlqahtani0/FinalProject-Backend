@@ -1,5 +1,6 @@
 package com.Project.CarRental.Controller;
 
+import com.Project.CarRental.DTO.BookDTO;
 import com.Project.CarRental.Repository.BookRepository;
 import com.Project.CarRental.Service.Imp.BookImp;
 import com.Project.CarRental.entity.Book;
@@ -32,9 +33,9 @@ public class BookController {
     // post
 
     @PostMapping("/books/add")
-    public ResponseEntity<String> addBooks(@RequestBody @Valid Book book) {
+    public ResponseEntity<String> addBooks(@RequestBody BookDTO bookDTO) {
         try {
-            bookImp.addBook(book);
+            bookImp.addBook(bookDTO);
             String massage = "Booking add successfully";
             return ResponseEntity.status(HttpStatus.OK).body(massage);
         } catch (Exception e) {

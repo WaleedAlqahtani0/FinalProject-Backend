@@ -1,5 +1,6 @@
 package com.Project.CarRental.Service.interfaces;
 
+import com.Project.CarRental.DTO.BookDTO;
 import com.Project.CarRental.entity.Book;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface BookServices {
     */
     public List<Book> getAllBooks();
 
-    public Book addBook( Book book);
+    public Book addBook(BookDTO book);
 
     public void deleteBook(String id);
 
