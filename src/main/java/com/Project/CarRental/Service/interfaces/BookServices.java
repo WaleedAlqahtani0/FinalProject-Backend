@@ -20,6 +20,7 @@ public interface BookServices {
     */
     public List<Book> getAllBooks();
 
+    public List<Book> getBooksByUserId(int userId);
     public Book addBook(BookDTO book);
 
     public void deleteBook(String id);

@@ -38,6 +38,11 @@ public class BookImp implements BookServices {
     }
 
     @Override
+    public List<Book> getBooksByUserId(int userId) {
+        return bookRepository.findAllByUserId(userId);
+    }
+
+    @Override
     public Book addBook(BookDTO book) {
         User user = userRepository.findById(book.getUserId()).get();
         Car car = carRepository.findById(book.getCarId()).get();

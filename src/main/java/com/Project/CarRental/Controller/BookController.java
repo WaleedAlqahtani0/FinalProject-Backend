@@ -30,6 +30,13 @@ public class BookController {
         return bookImp.getAllBooks();
     }
 
+    // Get by user id
+    @GetMapping("/carRental/books/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Book> getBookByUserId(@PathVariable int id) {
+        return bookImp.getBooksByUserId(id);
+    }
+
     // post
 
     @PostMapping("/carRental/books/add")
