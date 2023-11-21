@@ -24,7 +24,7 @@ public class BookController {
 
 
     // Get
-    @GetMapping("/books")
+    @GetMapping("/carRental/books")
     @ResponseStatus(HttpStatus.OK)
     public List<Book> getAllBook() {
         return bookImp.getAllBooks();
@@ -32,7 +32,7 @@ public class BookController {
 
     // post
 
-    @PostMapping("/books/add")
+    @PostMapping("/carRental/books/add")
     public ResponseEntity<String> addBooks(@RequestBody BookDTO bookDTO) {
         try {
             bookImp.addBook(bookDTO);
@@ -45,8 +45,7 @@ public class BookController {
     }
 
     // delete
-
-    @DeleteMapping("/books/delete/{id}")
+    @DeleteMapping("/carRental/books/delete/{id}")
     public String deleteBook(@PathVariable String id) {
         Optional<Book> UserFound = bookRepository.findById(id);
         try {
@@ -61,7 +60,7 @@ public class BookController {
         }
     }
 
-    @PutMapping("/books/update/{id}")
+    @PutMapping("/carRental/books/update/{id}")
     public String updateBooks(@PathVariable String id, @RequestBody Book book){
         return bookImp.UpdateBook(id,book);
     }
