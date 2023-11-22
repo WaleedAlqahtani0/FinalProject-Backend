@@ -9,7 +9,7 @@ The Car Rental System is a web-based application designed to streamline the proc
 ![Class diagram](classdiagram.png)
 
 ## FrontEnd link
-Frontend =https://github.com/WaleedAlqahtani0/FinalProject-FrontEnd.git
+Frontend = https://github.com/WaleedAlqahtani0/FinalProject-FrontEnd.git
 
 ## Setup
 1- Clone the repository to your local machine.
