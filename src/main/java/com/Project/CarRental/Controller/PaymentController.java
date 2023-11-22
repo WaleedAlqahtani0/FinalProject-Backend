@@ -27,7 +27,7 @@ public class PaymentController {
 
 
     // Get Api
-    @GetMapping("/payments")
+    @GetMapping("/carRental/payments")
     @ResponseStatus(HttpStatus.OK)
     public List<Payment> getAllPayment() {
         return paymentImp.getAllPayment();
@@ -35,7 +35,7 @@ public class PaymentController {
 
 
     // Post or add
-    @PostMapping("/payments/add")
+    @PostMapping("/carRental/payments/add")
     public ResponseEntity<String> addPayment(@RequestBody @Valid Payment payment) {
         try {
             paymentImp.addPayment(payment);
@@ -47,7 +47,7 @@ public class PaymentController {
         }
     }
 
-    @DeleteMapping("/payments/delete/{id}")
+    @DeleteMapping("/carRental/payments/delete/{id}")
     public String deletePayment(@PathVariable String id) {
         Optional<Payment> UserFound = paymentRepository.findById(id);
         try {
@@ -62,7 +62,7 @@ public class PaymentController {
         }
     }
 
-    @PutMapping("/payments/update/{id}")
+    @PutMapping("/carRental/payments/update/{id}")
     public String updatePayment(@PathVariable String id, @RequestBody Payment payment){
         return paymentImp.UpdatePayment(id,payment);
     }

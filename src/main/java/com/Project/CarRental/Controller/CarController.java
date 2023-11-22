@@ -37,7 +37,7 @@ public class CarController {
 
     // Post -- Add
 
-    @PostMapping("/cars/add")
+    @PostMapping("/carRental/add")
     public ResponseEntity<String> addCars(@RequestBody @Valid Car car) {
         try {
             carImp.addCar(car);
@@ -51,7 +51,7 @@ public class CarController {
 
 
     // Delete
-    @DeleteMapping("/cars/delete/{id}")
+    @DeleteMapping("/carRental/cars/delete/{id}")
     public String deleteCars(@PathVariable int id) {
         Optional<Car> carFound = carRepository.findById(id);
         try {
@@ -68,7 +68,7 @@ public class CarController {
 
     // Update
 
-    @PutMapping("/cars/update/{id}")
+    @PutMapping("/carRental/cars/update/{id}")
     public String updateCars(@PathVariable int id, @RequestBody Car car){
         return carImp.UpdateCar(id,car);
     }

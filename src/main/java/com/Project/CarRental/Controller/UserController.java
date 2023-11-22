@@ -39,14 +39,14 @@ public class UserController {
      - Get a list of all users
      - return list of all users
     */
-    @GetMapping("/users")
+    @GetMapping("/carRental/users")
     @ResponseStatus(HttpStatus.OK)
     public List<User> getAllUsers() {
         return userImp.getAllUsers();
     }
 
 
-    @GetMapping(value = "/users/{id}")
+    @GetMapping(value = "/carRental/users/{id}")
     public User findUserById(@PathVariable int id){
         return userImp.findUserById(id);
     }
@@ -57,7 +57,7 @@ public class UserController {
            - I used try-catch to check there is not give anu error or Exception when added
              */
 
-    @PostMapping("/users/add")
+    @PostMapping("/carRental/users/add")
     public ResponseEntity<String> addUsers(@RequestBody @Valid User user) {
         try {
             userImp.addUser(user);
@@ -74,7 +74,7 @@ public class UserController {
       - Delete users with handling Exception
      */
 
-    @DeleteMapping("/users/delete/{id}")
+    @DeleteMapping("/carRental/users/delete/{id}")
     public String deleteUsers(@PathVariable int id) {
         Optional<User> UserFound = userRepository.findById(id);
         try {
@@ -92,7 +92,7 @@ public class UserController {
     /*----------------------
           - Update users and I did the Exception in UserImp class
          */
-    @PutMapping("/users/update/{id}")
+    @PutMapping("/carRental/users/update/{id}")
     public String updateUsers(@PathVariable int id, @RequestBody User user){
         return userImp.UpdateUser(id,user);
     }

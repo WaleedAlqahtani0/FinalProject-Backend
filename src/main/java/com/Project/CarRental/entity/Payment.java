@@ -25,23 +25,16 @@ public class Payment {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "bookCode")
+    @OneToOne(mappedBy = "payment")
     private Book book;
 
     public Payment() {
     }
 
-    public Payment(String cardType) {
+    public Payment(String codeNumber, String cardType, User user) {
+        this.codeNumber = codeNumber;
         this.cardType = cardType;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
+        this.user = user;
     }
 
     public String getCodeNumber() {
@@ -52,14 +45,6 @@ public class Payment {
         this.codeNumber = codeNumber;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getCardType() {
         return cardType;
     }
@@ -68,17 +53,25 @@ public class Payment {
         this.cardType = cardType;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Payment payment = (Payment) o;
-        return Objects.equals(codeNumber, payment.codeNumber) && Objects.equals(cardType, payment.cardType);
+        return Objects.equals(codeNumber, payment.codeNumber) && Objects.equals(cardType, payment.cardType) && Objects.equals(user, payment.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codeNumber, cardType);
+        return Objects.hash(codeNumber, cardType, user);
     }
 
     @Override
@@ -86,6 +79,8 @@ public class Payment {
         return "Payment{" +
                 "codeNumber='" + codeNumber + '\'' +
                 ", cardType='" + cardType + '\'' +
+                ", user=" + user +
+                ", book=" + book +
                 '}';
     }
 }

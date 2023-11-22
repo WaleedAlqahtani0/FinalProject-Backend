@@ -27,25 +27,34 @@ public class Book {
     @JoinColumn(name = "carId")
     private Car car;
 
-    @OneToOne (mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
+    @JoinColumn(name = "paymentId")
     private Payment payment;
 
 
-
     //---------- constructors, getters, setters, equals, hashCode and toString;
+
+
     public Book() {
     }
 
-    public Book(String bookCode, String startDate, String endDate, String location,int nationalID) {
+    public Book(String bookCode, int nationalID, String startDate, String endDate, String location, User user, Car car, Payment payment) {
         this.bookCode = bookCode;
+        this.nationalID = nationalID;
         this.startDate = startDate;
         this.endDate = endDate;
         this.location = location;
-        this.nationalID=nationalID;
+        this.user = user;
+        this.car = car;
+        this.payment = payment;
     }
 
     public String getBookCode() {
         return bookCode;
+    }
+
+    public void setBookCode(String bookCode) {
+        this.bookCode = bookCode;
     }
 
     public int getNationalID() {
@@ -80,10 +89,6 @@ public class Book {
         this.location = location;
     }
 
-    public void setBookCode(String bookCode) {
-        this.bookCode = bookCode;
-    }
-
     public User getUser() {
         return user;
     }
@@ -98,5 +103,13 @@ public class Book {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 }

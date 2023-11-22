@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -53,17 +55,17 @@ public class BookController {
 
     // delete
     @DeleteMapping("/carRental/books/delete/{id}")
-    public String deleteBook(@PathVariable String id) {
+    public ResponseEntity<?> deleteBook(@PathVariable String id) {
         Optional<Book> UserFound = bookRepository.findById(id);
         try {
-            if (UserFound.isPresent()) {
                 bookImp.deleteBook(id);
-                return "Book Id deleted";
-            } else {
-                return "Book with user id " + id + " not found";
+                String message = "user deleted";
+            Map<String, String> response = new HashMap<>();
+            return ResponseEntity.status(HttpStatus.OK).body(response);
             }
-        } catch (Exception e) {
-            return "Book not deleted";
+         catch (Exception e) {
+        String message = "user not deleted";
+        return ResponseEntity.badRequest().body(message);
         }
     }
 

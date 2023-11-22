@@ -60,7 +60,6 @@ public class BookImp implements BookServices {
         payment.setCodeNumber(bookCode);
         payment.setCardType("VISA");
         payment.setUser(user);
-        payment.setBook(bookEntity);
 
         paymentRepository.save(payment);
 
